@@ -1,0 +1,9 @@
+{
+  "usuarios": [
+    {
+      "email": "teste@emaill.com.br",
+      "password": "123456"
+    }
+  ],
+  "clientes": []
+}
