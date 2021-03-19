@@ -61,6 +61,12 @@ border-radius: 70px;
 display: flex;
 justify-content: center;
 align-items:center;
+&:hover {
+ border: 1px solid #58AF9C;
+ color: #58AF9C;
+ background-color: white;
+ transition: 0.15s;
+}
 
 `;
 export const FormContainerRight = styled(Form)`

@@ -1,7 +1,7 @@
 
 import {BrowserRouter, Switch , Route }from 'react-router-dom'
 import Login from '../screens/login/Login'
-import List from '../screens/list/List'
+import AddItem from '../screens/addItem/AddItem'
 
 
 function Routes(){
@@ -9,7 +9,7 @@ function Routes(){
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Login}/>
-                <Route exact path="/list" component={List}/>
+                <Route exact path="/AddItem" component={AddItem}/>
             </Switch>
         </BrowserRouter>
     )
