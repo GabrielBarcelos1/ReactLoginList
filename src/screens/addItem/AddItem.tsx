@@ -4,6 +4,7 @@ import {MajorContainer, ContainerForm, H1Form, ContainerLeft, MinorContainerLeft
 import { Form, Input} from 'semantic-ui-react'
 import InputMask from 'react-input-mask';
 import {viacep, fakeapi} from '../../services/api'
+import {Link} from 'react-router-dom'
 
 
  function AddItem (){
@@ -132,7 +133,9 @@ import {viacep, fakeapi} from '../../services/api'
       <ContainerRight>
         <H1ContainerRight>Fill the Form</H1ContainerRight>
         <TextContainerRight>fill in the form fields to put your data in our database, or click below to see the list of data so far</TextContainerRight>
-        <ButtonContainerRight>See List</ButtonContainerRight>
+        <Link to="/list">
+          <ButtonContainerRight>See List</ButtonContainerRight>
+        </Link>
       </ContainerRight>
     </MajorContainer>
   )

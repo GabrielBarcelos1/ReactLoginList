@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {Form} from 'semantic-ui-react'
 
 
 export const MajorContainer = styled.div`
@@ -21,17 +20,6 @@ export const ContainerLeft = styled.div`
     display:none
   }
 `;
-export const H1ContainerLeft = styled.h1`
-color: white;
-font-weight:700;
-
-`;
-export const TextContainerLeft = styled.p`
-color: #95D1C7;
-line-height:30px;
-
-`;
-
 export const ContainerRight = styled.div`
   width: 60%;
   height:100%;
@@ -43,18 +31,23 @@ export const ContainerRight = styled.div`
   @media(max-width: 600px) {
     width: 100%;
   }
-
 `
-export const H1ContainerRight = styled.h1`
-color: #58AF9C;
+export const H1ContainerLeft = styled.h1`
+color: white;
 font-weight:700;
 
 `;
-export const ButtonContainerRight = styled.div`
-margin-top: 30px;
+export const TextContainerLeft = styled.p`
+color: #95D1C7;
+line-height:30px;
+max-width: 40%;
+
+`
+export const ButtonContainerLeft = styled.div`
+margin-top: 10px;
 color: white;
 font-weight: 600;
-background-color: #58AF9C;
+border: 1px solid white;
 width: 250px;
 height :40px;
 border-radius: 70px;
@@ -67,16 +60,17 @@ align-items:center;
  background-color: white;
  transition: 0.15s;
 }
+`
+export const MinorContainerRight = styled.div`
+display: flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+width:70%;
+`
+export const H1List = styled.h1`
+color: #58AF9C;
+font-weight:700;
+margin-bottom:20px;
 
-`;
-export const FormContainerRight = styled(Form)`
-  width: 60%;
-  @media(max-width: 600px) {
-    width: 80%;
-  }
-  
-
-`;
-
-
-
+`

@@ -43,7 +43,7 @@ function Login() {
       <input placeholder='Password' value={valuePassword} type="password" onChange={(e)=>setValuePassword(e.target.value)}/>
     </Form.Field>
   </FormContainerRight>
-  <Link to="/addItem">
+  <Link to="/add">
   <ButtonContainerRight onClick={()=> SignIn()}>Sign in</ButtonContainerRight>
   </Link>
       </ContainerRight>
