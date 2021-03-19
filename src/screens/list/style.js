@@ -16,7 +16,7 @@ export const ContainerLeft = styled.div`
   justify-content:center;
   align-items:center;
   text-align:center;
-  @media(max-width: 600px) {
+  @media(max-width: 915px) {
     display:none
   }
 `;
@@ -28,7 +28,7 @@ export const ContainerRight = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  @media(max-width: 600px) {
+  @media(max-width: 915px) {
     width: 100%;
   }
 `
@@ -67,6 +67,9 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 width:70%;
+@media(max-width: 767px) {
+   margin-top: 500px
+  }
 `
 export const H1List = styled.h1`
 color: #58AF9C;
