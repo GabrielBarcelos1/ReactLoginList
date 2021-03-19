@@ -1,12 +1,13 @@
 import React, {useEffect,useState} from 'react'
 import {MajorContainer, ContainerLeft, ContainerRight, H1ContainerLeft, 
-  TextContainerLeft, ButtonContainerLeft, MinorContainerRight,H1List,} from './style'
+  TextContainerLeft, ButtonContainerLeft, MinorContainerRight,H1List,ContainerIconLogout, MinorContainerIconLogout} from './style'
 import { AiOutlineEdit,AiOutlineDelete ,AiOutlineSearch} from "react-icons/ai";
 import{fakeapi} from '../../services/api'
 import {Link} from 'react-router-dom'
 import { Icon, Menu, Table,Input } from 'semantic-ui-react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 function List(){
   const notify = () => toast.error('item deleted successfully!', {
@@ -60,7 +61,7 @@ function searchItens(){
 function deleteItem(id){
   setRefreshSearch(true)
   notify()
-  // fakeapi.delete(`/clientes/${id}`)
+  fakeapi.delete(`/clientes/${id}`)
 
 }
   
@@ -74,6 +75,13 @@ function deleteItem(id){
         </Link>
       </ContainerLeft>
       <ContainerRight>
+      <ContainerIconLogout>
+          <Link to="/">
+            <MinorContainerIconLogout>
+              <RiLogoutBoxLine size={25} color="#58AF9C"/> Logout
+            </MinorContainerIconLogout>
+          </Link>
+        </ContainerIconLogout>
         <MinorContainerRight>
           <H1List>Users Registered</H1List>
          <Table celled>
@@ -96,7 +104,9 @@ function deleteItem(id){
           <Table.Cell>{item.cpf}</Table.Cell>
           <Table.Cell>{item.email}</Table.Cell>
           <Table.Cell>{item.endereco.cidade}</Table.Cell>
+          <Link to={`edit/${item.id}`}>
           <Table.Cell><AiOutlineEdit size={22} color="#58AF9C"/></Table.Cell>
+          </Link>
           <Table.Cell><AiOutlineDelete size={22} color="red" onClick={()=> deleteItem(item.id)}/></Table.Cell>
         </Table.Row>
         )

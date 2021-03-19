@@ -18,6 +18,7 @@ export const ContainerLeft = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
+  flex-direction: column ;
   @media(max-width: 780px) {
     width: 100%;
   }
@@ -41,6 +42,7 @@ export const MinorContainerLeft = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
+  
   @media(max-width: 1170px) {
     width: 90%;
   }
@@ -109,3 +111,29 @@ border: 0;
 }
 
 `
+export const ContainerIconLogout = styled.div`
+  width: 80%;
+  margin-top: 30px;
+  display:flex;
+  align-items:center;
+  color: #58AF9C;
+  font-weight:700;
+`;
+export const MinorContainerIconLogout = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content: flex-start;
+  color: #58AF9C;
+  font-weight:700;
+  padding: 3px 5px;
+  border-radius: 4px;
+  border: 1px solid white;
+  &:hover {
+ border: 1px solid #58AF9C;
+ transition: 0.15s;
+ cursor: pointer;
+}
+@media(max-width: 780px) {
+    margin-bottom:30px;
+  }
+`;

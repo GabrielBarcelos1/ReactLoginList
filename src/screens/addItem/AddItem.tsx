@@ -1,13 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {MajorContainer, ContainerForm, H1Form, ContainerLeft, MinorContainerLeft,
-   H1ContainerRight, ContainerRight,TextContainerRight, ButtonContainerRight, ButtonContainerLeft} from './style'
+   H1ContainerRight, ContainerRight,TextContainerRight, ButtonContainerRight, ButtonContainerLeft, ContainerIconLogout, MinorContainerIconLogout} from './style'
 import { Form, Input} from 'semantic-ui-react'
 import InputMask from 'react-input-mask';
 import {viacep, fakeapi} from '../../services/api'
-import {Link} from 'react-router-dom'
+import {Link, RouteComponentProps} from 'react-router-dom'
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
- function AddItem (){
+type TParams = { id: string };
+ function AddItem ({match}: RouteComponentProps<TParams>){
   const [valueName, setValueName] = useState("")
   const [valueCep, setValueCep] = useState("")
   const [valueCPF, setValueCPF] = useState("")
@@ -16,6 +19,47 @@ import {Link} from 'react-router-dom'
   const [valueCity, setValueCity] = useState("")
   const [valueDistrict, setValueDistrict] = useState("")
   const [valueNum, setValueNum] = useState("")
+  const notify = () => toast.success('item add with success!', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    });
+  const notifyEdit = () => toast.success('item edited with success!', {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+    });
+
+
+  useEffect(()=>{
+    async function getData(){
+      try{
+        const {data}  = await fakeapi.get(`/clientes/${match.params.id}`)
+        console.log(data)
+        setValueName(data.nome)
+        setValueCep(data.endereco.cep)
+        setValueCPF(data.cpf)
+        setValueEmail(data.email)
+        setValueStreet(data.endereco.rua)
+        setValueCity(data.endereco.cidade)
+        setValueDistrict(data.endereco.bairro)
+        setValueNum(data.endereco.numero)
+       
+      }catch(err){
+        console.error(err)
+      }
+    }
+    getData()
+    
+  },[])
  async function validateCep (value: string){
     setValueCep(value)
     if(value.endsWith("_")){
@@ -35,10 +79,9 @@ import {Link} from 'react-router-dom'
       console.log("deu erro")
   }else{
     let cepParsed = parseValue(valueCep)
-    let cpfParsed = parseValue(valueCPF)
     let teste =   {
       nome: valueName,
-      cpf: cpfParsed ,
+      cpf: valueCPF ,
       email: valueEmail,
       endereco: {
           cep: cepParsed,
@@ -49,8 +92,31 @@ import {Link} from 'react-router-dom'
       }
   }
     fakeapi.post("/clientes", teste)
+   
   }
   }
+  function editInfosDb(){
+    console.log(valueCep)
+    if(valueCep.endsWith("_") || valueCPF.endsWith("_") ){
+      console.log("deu erro")
+  }else{
+      let cepParsed = parseValue(valueCep)
+      let teste =   {
+        nome: valueName,
+        cpf: valueCPF ,
+        email: valueEmail,
+        endereco: {
+            cep: cepParsed,
+            rua:valueStreet ,
+            numero: valueNum,
+            bairro: valueDistrict,
+            cidade: valueCity,
+        }
+    }
+      fakeapi.put(`/clientes/${match.params.id}`, teste)
+      notifyEdit()
+    }
+    }
   function parseValue(cep: string){
     let NumberParsed = cep.split('.').join("");
     return NumberParsed = NumberParsed.replace('-', '');
@@ -59,11 +125,20 @@ import {Link} from 'react-router-dom'
 
   return(
     <MajorContainer>
+      
       <ContainerLeft>
+        <ContainerIconLogout>
+          <Link to="/">
+            <MinorContainerIconLogout>
+              <RiLogoutBoxLine size={25} color="#58AF9C"/> Logout
+            </MinorContainerIconLogout>
+          </Link>
+        </ContainerIconLogout>
+        
         <MinorContainerLeft>
       <ContainerForm >
         <H1Form>Form</H1Form>
-      <Form  onSubmit={addInfosToDb}>
+      <Form  onSubmit={()=> !match.params?.id? addInfosToDb() : editInfosDb()}>
     <Form.Group widths='equal'>
       <Form.Field type="tel" disableUnderline   required control={Input} label='Name' placeholder='Name' value={valueName} onChange={(e:React.ChangeEvent<HTMLInputElement>) =>setValueName(e.target.value)}/>
     <InputMask mask="999.999.999-99" value={valueCPF} onChange={e => setValueCPF(e.target.value)}>
@@ -124,7 +199,7 @@ import {Link} from 'react-router-dom'
     </Form.Group>
     <Form.Field
       control={ButtonContainerLeft}
-    >Save in Data Base</Form.Field>
+    >{!match.params?.id? "Save in Data Base" : "Update in DataBase"}</Form.Field>
     
   </Form>
       </ContainerForm>
@@ -137,6 +212,17 @@ import {Link} from 'react-router-dom'
           <ButtonContainerRight>See List</ButtonContainerRight>
         </Link>
       </ContainerRight>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+/>
     </MajorContainer>
   )
 }
