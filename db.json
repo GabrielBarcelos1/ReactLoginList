@@ -239,6 +239,19 @@
         "cidade": "Santa Bárbara D'Oeste"
       },
       "id": 29
+    },
+    {
+      "nome": "Aeste",
+      "cpf": "213.123.123-45",
+      "email": "foo_bar@email.com",
+      "endereco": {
+        "cep": 13454000,
+        "rua": "rua talvez",
+        "numero": 785,
+        "bairro": "bairro azul",
+        "cidade": "cidade eterna"
+      },
+      "id": 30
     }
   ]
 }

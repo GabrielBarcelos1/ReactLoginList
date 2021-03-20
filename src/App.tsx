@@ -1,7 +1,10 @@
-import Routes from './routes/routes'
+import Routes from "./routes/routes";
+import Provider from "./store/Provider";
 function App() {
   return (
-    <Routes/>
+    <Provider>
+      <Routes />
+    </Provider>
   );
 }
 
