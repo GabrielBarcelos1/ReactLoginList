@@ -111,6 +111,9 @@ export const MinorContainerIconLogout = styled.div`
 `;
 export const InputSearch = styled(Input)`
   max-width: 105px;
+  @media (min-width: 1300px) {
+    max-width: 80px;
+  }
 `;
 export const MenuSearchContainer = styled.div`
     display: flex;

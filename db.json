@@ -11,17 +11,17 @@
       "cpf": "213.123.123-45",
       "email": "foo_bar@email.com",
       "endereco": {
-        "cep": 13454000,
-        "rua": "rua talvez",
+        "cep": "13454001",
+        "rua": "Rua do Centeio",
         "numero": 785,
-        "bairro": "bairro azul",
-        "cidade": "cidade eterna"
+        "bairro": "Loteamento Industrial",
+        "cidade": "Santa Bárbara D'Oeste"
       },
       "id": 2
     },
     {
       "nome": "Gabriela Viera Barcelos",
-      "cpf": "12817509994",
+      "cpf": "128.175.099-95",
       "email": "a@gmail.com",
       "endereco": {
         "cep": "88054610",
@@ -31,19 +31,6 @@
         "cidade": "Florianópolis"
       },
       "id": 7
-    },
-    {
-      "nome": "foo bar",
-      "cpf": "213.123.123-45",
-      "email": "foo_bar@email.com",
-      "endereco": {
-        "cep": 13454000,
-        "rua": "rua talvez",
-        "numero": 785,
-        "bairro": "bairro azul",
-        "cidade": "cidade eterna"
-      },
-      "id": 9
     },
     {
       "nome": "teste",
@@ -252,6 +239,32 @@
         "cidade": "cidade eterna"
       },
       "id": 30
+    },
+    {
+      "nome": "Gabriel",
+      "cpf": "128.175.099-92",
+      "email": "a@gmail.com",
+      "endereco": {
+        "cep": "88054610",
+        "rua": "Rua do Lamim",
+        "numero": "2684",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 31
+    },
+    {
+      "nome": "tereza",
+      "cpf": "128.175.094-44",
+      "email": "b@gmail.com",
+      "endereco": {
+        "cep": "88054610",
+        "rua": "Rua do Lamim",
+        "numero": "77",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 32
     }
   ]
 }

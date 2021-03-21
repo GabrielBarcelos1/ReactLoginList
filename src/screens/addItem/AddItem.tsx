@@ -31,6 +31,8 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
   const [valueCity, setValueCity] = useState("");
   const [valueDistrict, setValueDistrict] = useState("");
   const [valueNum, setValueNum] = useState("");
+  const [ErrorCep, setErroCep] = useState(false);
+  const [ErrorCPF, setErrorCPF] = useState(false);
   const notify = () =>
     toast.success("item add with success!", {
       position: "bottom-left",
@@ -85,9 +87,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
     }
   }
   function addInfosToDb() {
-    if (valueCep.endsWith("_") || valueCPF.endsWith("_")) {
-      console.log("deu erro");
-    } else {
+    if (!valueCep.endsWith("_") && !valueCPF.endsWith("_") && verifyCepAndCpf()) {
       let cepParsed = parseValue(valueCep);
       let teste = {
         nome: valueName,
@@ -102,13 +102,11 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
         },
       };
       fakeapi.post("/clientes", teste);
+      notify();
     }
   }
   function editInfosDb() {
-    console.log(valueCep);
-    if (valueCep.endsWith("_") || valueCPF.endsWith("_")) {
-      console.log("deu erro");
-    } else {
+    if (!valueCep.endsWith("_") && !valueCPF.endsWith("_") && verifyCepAndCpf()){
       let cepParsed = parseValue(valueCep);
       let teste = {
         nome: valueName,
@@ -130,6 +128,22 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
     let NumberParsed = cep.split(".").join("");
     return (NumberParsed = NumberParsed.replace("-", ""));
   }
+  function verifyCepAndCpf() {
+    console.log(valueCPF)
+    if (valueCep.endsWith("_") ) {
+      setErroCep(true);
+      return false
+    }
+    if (valueCPF.endsWith("_")) {
+      setErrorCPF(true)
+      return false
+
+    }
+
+    return true
+  }
+
+
 
   return (
     <MajorContainer>
@@ -174,6 +188,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
                       control={Input}
                       label="CPF"
                       placeholder="CPF"
+                      error={ErrorCPF}
                     />
                   )}
                 </InputMask>
@@ -202,6 +217,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
                       label="CEP"
                       placeholder="CEP"
                       width="7"
+                      error={ErrorCep}
                     />
                   )}
                 </InputMask>
@@ -247,7 +263,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
                   }
                 />
               </Form.Group>
-              <Form.Field control={ButtonContainerLeft}>
+              <Form.Field control={ButtonContainerLeft} onClick={()=>verifyCepAndCpf()}>
                 {!match.params?.id ? "Save in Data Base" : "Update in DataBase"}
               </Form.Field>
             </Form>
