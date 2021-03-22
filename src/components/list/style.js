@@ -66,6 +66,26 @@ export const ButtonContainerLeft = styled.div`
     transition: 0.15s;
   }
 `;
+export const ButtonContainerMobile = styled.div`
+  color: #58af9c;
+  font-weight: 600;
+  border: 1px solid #58af9c;
+  width: 180px;
+  height: 40px;
+  border-radius: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    border: 1px solid #58af9c;
+    color: white;
+    background-color: #58af9c;
+    transition: 0.15s;
+  }
+  @media (min-width: 916px) {
+    display:none
+  }
+`;
 export const MinorContainerRight = styled.div`
   display: flex;
   flex-direction: column;
@@ -88,6 +108,9 @@ export const ContainerIconLogout = styled.div`
   font-weight: 700;
   margin: 0 auto;
   justify-content: flex-end;
+  @media (max-width: 916px) {
+    justify-content: space-between
+  }
 `;
 export const MinorContainerIconLogout = styled.div`
   display: flex;
@@ -111,7 +134,7 @@ export const MinorContainerIconLogout = styled.div`
 `;
 export const InputSearch = styled(Input)`
   max-width: 105px;
-  @media (min-width: 1300px) {
+  @media (max-width: 1300px) {
     max-width: 80px;
   }
 `;

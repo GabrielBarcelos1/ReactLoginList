@@ -89,6 +89,27 @@ export const ButtonContainerRight = styled.div`
     transition: 0.15s;
   }
 `;
+export const ButtonContainerMobile = styled.div`
+  color: #58af9c;
+  font-weight: 600;
+  border: 1px solid #58af9c;
+  width: 180px;
+  height: 40px;
+  border-radius: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:30px;
+  &:hover {
+    border: 1px solid #58af9c;
+    color: white;
+    background-color: #58af9c;
+    transition: 0.15s;
+  }
+  @media (min-width: 780px) {
+    display:none
+  }
+`;
 export const ButtonContainerLeft = styled.button`
   margin-top: 30px;
   color: white;
@@ -108,6 +129,9 @@ export const ButtonContainerLeft = styled.button`
     background-color: white;
     transition: 0.15s;
   }
+  @media (max-width: 780px) {
+    margin:10px auto;
+  }
 `;
 export const ContainerIconLogout = styled.div`
   width: 80%;
@@ -116,10 +140,11 @@ export const ContainerIconLogout = styled.div`
   align-items: center;
   color: #58af9c;
   font-weight: 700;
+  justify-content: space-between;
 `;
 export const MinorContainerIconLogout = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   color: #58af9c;
   font-weight: 700;

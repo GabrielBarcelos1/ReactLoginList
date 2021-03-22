@@ -12,6 +12,7 @@ import {
   ButtonContainerLeft,
   ContainerIconLogout,
   MinorContainerIconLogout,
+  ButtonContainerMobile,
 } from "./style";
 import { Form, Input } from "semantic-ui-react";
 import InputMask from "react-input-mask";
@@ -57,8 +58,8 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
   useEffect(() => {
     async function getData() {
       try {
-        const { data } = await fakeapi.get(`/clientes/${match.params.id}`);
-        console.log(data);
+        const { data } = await fakeapi.get(`/clientes/${match?.params?.id}`);
+
         setValueName(data.nome);
         setValueCep(data.endereco.cep);
         setValueCPF(data.cpf);
@@ -67,27 +68,28 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
         setValueCity(data.endereco.cidade);
         setValueDistrict(data.endereco.bairro);
         setValueNum(data.endereco.numero);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     }
     getData();
   }, []);
   async function validateCep(value: string) {
     setValueCep(value);
     if (value.endsWith("_")) {
-      console.log("não acabou");
     } else {
       let cepParsed = parseValue(value);
       const { data } = await viacep.get(`/${cepParsed}/json/`);
-      console.log(data);
+
       setValueStreet(data.logradouro);
       setValueCity(data.localidade);
       setValueDistrict(data.bairro);
     }
   }
   function addInfosToDb() {
-    if (!valueCep.endsWith("_") && !valueCPF.endsWith("_") && verifyCepAndCpf()) {
+    if (
+      !valueCep.endsWith("_") &&
+      !valueCPF.endsWith("_") &&
+      verifyCepAndCpf()
+    ) {
       let cepParsed = parseValue(valueCep);
       let teste = {
         nome: valueName,
@@ -103,10 +105,22 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
       };
       fakeapi.post("/clientes", teste);
       notify();
+      setValueName("");
+      setValueCep("");
+      setValueCPF("");
+      setValueEmail("");
+      setValueStreet("");
+      setValueCity("");
+      setValueDistrict("");
+      setValueNum("");
     }
   }
   function editInfosDb() {
-    if (!valueCep.endsWith("_") && !valueCPF.endsWith("_") && verifyCepAndCpf()){
+    if (
+      !valueCep.endsWith("_") &&
+      !valueCPF.endsWith("_") &&
+      verifyCepAndCpf()
+    ) {
       let cepParsed = parseValue(valueCep);
       let teste = {
         nome: valueName,
@@ -120,7 +134,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
           cidade: valueCity,
         },
       };
-      fakeapi.put(`/clientes/${match.params.id}`, teste);
+      fakeapi.put(`/clientes/${match?.params?.id}`, teste);
       notifyEdit();
     }
   }
@@ -129,21 +143,17 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
     return (NumberParsed = NumberParsed.replace("-", ""));
   }
   function verifyCepAndCpf() {
-    console.log(valueCPF)
-    if (valueCep.endsWith("_") ) {
+    if (valueCep.endsWith("_")) {
       setErroCep(true);
-      return false
+      return false;
     }
     if (valueCPF.endsWith("_")) {
-      setErrorCPF(true)
-      return false
-
+      setErrorCPF(true);
+      return false;
     }
 
-    return true
+    return true;
   }
-
-
 
   return (
     <MajorContainer>
@@ -154,6 +164,9 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
               <RiLogoutBoxLine size={25} color="#58AF9C" /> Logout
             </MinorContainerIconLogout>
           </Link>
+          <Link to="/list">
+            <ButtonContainerMobile>See List</ButtonContainerMobile>
+          </Link>
         </ContainerIconLogout>
 
         <MinorContainerLeft>
@@ -161,49 +174,52 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
             <H1Form>Form</H1Form>
             <Form
               onSubmit={() =>
-                !match.params?.id ? addInfosToDb() : editInfosDb()
+                !match?.params?.id ? addInfosToDb() : editInfosDb()
               }
             >
               <Form.Group widths="equal">
-                <Form.Field
-                  type="tel"
-                  disableUnderline
-                  required
-                  control={Input}
-                  label="Name"
-                  placeholder="Name"
-                  value={valueName}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setValueName(e.target.value)
-                  }
-                />
+                <Form.Field required>
+                  <label> Name</label>
+                  <input
+                    data-testid="inputName"
+                    placeholder="Name"
+                    value={valueName}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setValueName(e.target.value)
+                    }
+                  ></input>
+                </Form.Field>
                 <InputMask
                   mask="999.999.999-99"
                   value={valueCPF}
                   onChange={(e) => setValueCPF(e.target.value)}
+                  data-testid="inputCPF"
                 >
                   {() => (
-                    <Form.Field
-                      required
-                      control={Input}
-                      label="CPF"
-                      placeholder="CPF"
-                      error={ErrorCPF}
-                    />
+                    <Form.Field error={ErrorCPF} required>
+                      <label> CPF</label>
+                      <input
+                        data-testid="inputCPF"
+                        placeholder="CPF"
+                        required
+                      ></input>
+                    </Form.Field>
                   )}
                 </InputMask>
               </Form.Group>
-              <Form.Field
-                required
-                control={Input}
-                label="Email"
-                placeholder="joe@schmoe.com"
-                type="email"
-                value={valueEmail}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setValueEmail(e.target.value)
-                }
-              />
+              <Form.Field required>
+                <label> Email</label>
+                <input
+                  type="email"
+                  data-testid="inputEmail"
+                  placeholder="Email"
+                  required
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setValueEmail(e.target.value)
+                  }
+                  value={valueEmail}
+                ></input>
+              </Form.Field>
               <Form.Group widths="equal">
                 <InputMask
                   mask="99.999-999"
@@ -211,60 +227,71 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
                   onChange={(e) => validateCep(e.target.value)}
                 >
                   {() => (
-                    <Form.Field
-                      required
-                      control={Input}
-                      label="CEP"
-                      placeholder="CEP"
-                      width="7"
-                      error={ErrorCep}
-                    />
+                    <Form.Field required error={ErrorCep}>
+                      <label>CEP</label>
+                      <input
+                        data-testid="inputCEP"
+                        placeholder="CEP"
+                        required
+                      ></input>
+                    </Form.Field>
                   )}
                 </InputMask>
 
-                <Form.Field
-                  required
-                  control={Input}
-                  label="District"
-                  placeholder="District"
-                  value={valueDistrict}
-                />
-                <Form.Field
-                  required
-                  control={Input}
-                  label="City"
-                  placeholder="City"
-                  value={valueCity}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setValueCity(e.target.value)
-                  }
-                />
+                <Form.Field required>
+                  <label>District</label>
+                  <input
+                    data-testid="inputDisctrict"
+                    placeholder="District"
+                    required
+                    value={valueDistrict}
+                    onChange={(e) => setValueDistrict(e.target.value)}
+                  ></input>
+                </Form.Field>
+                <Form.Field required>
+                  <label>City</label>
+                  <input
+                    data-testid="inputCity"
+                    placeholder="City"
+                    required
+                    value={valueCity}
+                    onChange={(e) => setValueCity(e.target.value)}
+                  ></input>
+                </Form.Field>
               </Form.Group>
               <Form.Group widths="equal">
-                <Form.Field
-                  required
-                  control={Input}
-                  label="Street"
-                  placeholder="Street"
-                  value={valueStreet}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setValueStreet(e.target.value)
-                  }
-                />
-                <Form.Field
-                  required
-                  control={Input}
-                  label="Number"
-                  placeholder="Number"
-                  maxLength={8}
-                  value={valueNum}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setValueNum(e.target.value)
-                  }
-                />
+                <Form.Field required>
+                  <label>Street</label>
+                  <input
+                    data-testid="inputStreet"
+                    placeholder="Street"
+                    required
+                    value={valueStreet}
+                    onChange={(e) => setValueStreet(e.target.value)}
+                  ></input>
+                </Form.Field>
+                <Form.Field required>
+                  <label>Number</label>
+                  <input
+                    type="text"
+                    maxLength={8}
+                    data-testid="inputNumber"
+                    placeholder="Number"
+                    required
+                    value={valueNum}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setValueNum(e.target.value)
+                    }
+                  ></input>
+                </Form.Field>
               </Form.Group>
-              <Form.Field control={ButtonContainerLeft} onClick={()=>verifyCepAndCpf()}>
-                {!match.params?.id ? "Save in Data Base" : "Update in DataBase"}
+              <Form.Field
+                control={ButtonContainerLeft}
+                onClick={() => verifyCepAndCpf()}
+              >
+                {!match?.params?.id
+                  ? "Save in Data Base"
+                  : "Update in DataBase"}
               </Form.Field>
             </Form>
           </ContainerForm>

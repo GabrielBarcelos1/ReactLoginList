@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Login from "../screens/login/Login";
-import AddItem from "../screens/addItem/AddItem";
-import List from "../screens/list/List";
+import Login from "../components/login/Login";
+import AddItem from "../components/form/Form";
+import List from "../components/list/List";
 import RoutesPrivate from "./private/Private";
 
 function Routes() {

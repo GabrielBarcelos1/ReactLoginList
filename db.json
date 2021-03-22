@@ -7,19 +7,6 @@
   ],
   "clientes": [
     {
-      "nome": "foo bar",
-      "cpf": "213.123.123-45",
-      "email": "foo_bar@email.com",
-      "endereco": {
-        "cep": "13454001",
-        "rua": "Rua do Centeio",
-        "numero": 785,
-        "bairro": "Loteamento Industrial",
-        "cidade": "Santa Bárbara D'Oeste"
-      },
-      "id": 2
-    },
-    {
       "nome": "Gabriela Viera Barcelos",
       "cpf": "128.175.099-95",
       "email": "a@gmail.com",
@@ -44,45 +31,6 @@
         "cidade": "cidade eterna"
       },
       "id": 15
-    },
-    {
-      "nome": "teste",
-      "cpf": "213.123.123-45",
-      "email": "foo_bar@email.com",
-      "endereco": {
-        "cep": 13454000,
-        "rua": "rua talvez",
-        "numero": 785,
-        "bairro": "bairro azul",
-        "cidade": "cidade eterna"
-      },
-      "id": 16
-    },
-    {
-      "nome": "teste",
-      "cpf": "213.123.123-45",
-      "email": "foo_bar@email.com",
-      "endereco": {
-        "cep": 13454000,
-        "rua": "rua talvez",
-        "numero": 785,
-        "bairro": "bairro azul",
-        "cidade": "cidade eterna"
-      },
-      "id": 17
-    },
-    {
-      "nome": "teste",
-      "cpf": "213.123.123-45",
-      "email": "foo_bar@email.com",
-      "endereco": {
-        "cep": 13454000,
-        "rua": "rua talvez",
-        "numero": 785,
-        "bairro": "bairro azul",
-        "cidade": "cidade eterna"
-      },
-      "id": 18
     },
     {
       "nome": "teste",
@@ -265,6 +213,45 @@
         "cidade": "Florianópolis"
       },
       "id": 32
+    },
+    {
+      "nome": "gabriela",
+      "cpf": "128.175.094-44",
+      "email": "a@gmail.com",
+      "endereco": {
+        "cep": "88054610",
+        "rua": "Rua do Lamim",
+        "numero": "2684",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 33
+    },
+    {
+      "nome": "gabriela",
+      "cpf": "128.175.094-44",
+      "email": "a@gmail.com",
+      "endereco": {
+        "cep": "88054610",
+        "rua": "Rua do Lamim",
+        "numero": "2684",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 34
+    },
+    {
+      "nome": "a",
+      "cpf": "213.123.123-12",
+      "email": "a@gmail.com",
+      "endereco": {
+        "cep": "88054610",
+        "rua": "Rua do Lamim",
+        "numero": "1231",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 36
     }
   ]
 }

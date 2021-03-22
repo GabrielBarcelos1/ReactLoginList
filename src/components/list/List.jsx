@@ -13,6 +13,7 @@ import {
   InputSearch,
   MenuSearchContainer,
   MenuOptionsContainer,
+  ButtonContainerMobile,
 } from "./style";
 import {
   AiOutlineEdit,
@@ -59,23 +60,17 @@ function List() {
       );
 
       SetarrayItens(data);
-      console.log(`/clientes?${
-        valueSearch !== "" ? "q=" + valueSearch + "&_" : "_"
-      }start=${startUrl}&_end=${endtUrl}&_sort=${valueSort}`);
     }
     pickClients();
   }, [startUrl, endtUrl, refreshSearch, valueSort]);
 
   function PaginationNext() {
-    console.log(startUrl);
-    console.log(endtUrl);
     if (arrayItens.length >= 5) {
       setStartUrl((prevState) => prevState + 5);
       setEndUrl((prevState) => prevState + 5);
     }
   }
   function PaginationBack() {
-    console.log(startUrl);
     if (startUrl > 0) {
       setStartUrl((prevState) => prevState - 5);
       setEndUrl((prevState) => prevState - 5);
@@ -92,7 +87,6 @@ function List() {
     fakeapi.delete(`/clientes/${id}`);
   }
   function changeOption(value) {
-    console.log(value);
     switch (value) {
       case "Name":
         setValueSort("nome");
@@ -107,7 +101,7 @@ function List() {
         setValueSort("cidade");
         break;
       default:
-        setValueSort("")
+        setValueSort("");
     }
   }
 
@@ -129,6 +123,9 @@ function List() {
             <MinorContainerIconLogout>
               <RiLogoutBoxLine size={25} color="#58AF9C" /> Logout
             </MinorContainerIconLogout>
+          </Link>
+          <Link to="/add">
+            <ButtonContainerMobile>Add item</ButtonContainerMobile>
           </Link>
         </ContainerIconLogout>
         <MinorContainerRight>
@@ -153,14 +150,15 @@ function List() {
                       <Table.Cell>{item.cpf}</Table.Cell>
                       <Table.Cell>{item.email}</Table.Cell>
                       <Table.Cell>{item.endereco.cidade}</Table.Cell>
+                      
                       <Table.Cell>
                         <AiOutlineEdit size={22} color="#58AF9C" />
                       </Table.Cell>
-                      <Table.Cell>
+                      
+                      <Table.Cell onClick={() => deleteItem(item.id)}>
                         <AiOutlineDelete
                           size={22}
                           color="red"
-                          onClick={() => deleteItem(item.id)}
                         />
                       </Table.Cell>
                     </Table.Row>

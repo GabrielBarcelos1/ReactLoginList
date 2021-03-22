@@ -23,20 +23,15 @@ function Login() {
   const [errorPassWord, setErrorPassWord] = useState(false);
   function SignIn() {
     const NUMBER_MAX = 4;
-    if (valuePassword.length < NUMBER_MAX) {
+    if (valuePassword.length < NUMBER_MAX ||  valueEmail.length < NUMBER_MAX) {
       setErrorPassWord(true);
-      if (valueEmail.length < NUMBER_MAX) {
-        setErrorEmail(true);
-      }
+      setErrorEmail(true);
     }else {
       setErrorPassWord(false);
       setErrorEmail(false);
       setToken({ token: "1234" });
       history.push("/list");
     }
-
-    console.log(valueEmail);
-    console.log(valuePassword);
   }
   return (
     <MajorContainer>
@@ -50,6 +45,7 @@ function Login() {
         <H1ContainerRight>Login in your account</H1ContainerRight>
         <FormContainerRight onSubmit={() => SignIn()}>
           <Form.Field
+           data-testid="inputEmail"
             error={errorEmail}
             id="form-input-control-error-email"
             control={Input}
@@ -71,7 +67,7 @@ function Login() {
               onChange={(e) => setValuePassword(e.target.value)}
             />
           </Form.Field>
-          <Form.Field control={ButtonContainerRight}>Sign in</Form.Field>
+          <Form.Field control={ButtonContainerRight} >Sign in</Form.Field>
         </FormContainerRight>
       </ContainerRight>
     </MajorContainer>
