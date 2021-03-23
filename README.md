@@ -1,15 +1,15 @@
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/GabrielBarcelos1/paper-rock-scissors">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/GabrielBarcelos1/ReactLoginList">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/GabrielBarcelos1/paper-rock-scissors">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/GabrielBarcelos1/ReactLoginList">
   
-  <a href="https://github.com/GabrielBarcelos1/paper-rock-scissors/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/GabrielBarcelos1/paper-rock-scissors">
+  <a href="https://github.com/GabrielBarcelos1/ReactLoginListcommits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/GabrielBarcelos1/ReactLoginList">
   </a>
 
   <a href="https://github.com/GabrielBarcelos1/paper-rock-scissors/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/GabrielBarcelos1/paper-rock-scissors">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/GabrielBarcelos1/ReactLoginList">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
@@ -36,22 +36,27 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [React-router-dom]()
 - [react-Icons]()
 - [Styled-components]()
-- [Css3]()
-- [Css3]()
+- [SemanticUI]()
+- [Typescript]()
+- [react-toastify]()
+- [React-testing-library]()
+- [json-server]()
 
 ## 💻 Projeto
-O projeto Paper,rock and scissors foi desenvolvido para praticar conceitos de ReactJs, dentre esses conceitos estão, hooks, troca de informações entre páginas usando contextApi, componentização,responsividade e rotas com react-router-dom. essa aplicação foi feita a partir de uma ideia do site https://www.frontendmentor.io sendo no nível avançado, é uma aplicação muito intuitiva que relembra a nossa infância com o famoso Pedra papel e tesoura.
+Desenvolvendo esse projeto pratiquei conceitos como  React hooks, troca de informações entre páginas usando contextApi, componentização,responsividade, rotas privadas e publicas com react-router-dom com um sistema de login.
 
-Site hospedado: https://paper-rock-scissors2.vercel.app/
+O fluxo do sistema consiste em o usuário logar, ao ele logar ele é redirecionado a uma página com uma lista de pessoas cadastrada nessa página ele tem a opção de adicionar dados de pessoas para complementar o banco de dados, a aplicação inteira é responsiva.
+
+Site hospedado: 
 
 ## 🌐 Frontend
 <h1 align="center">
-    <img  src="https://github.com/GabrielBarcelos1/paper-rock-scissors/blob/main/gifdesktop.gif" />
+    <img  src="" />
 </h1>
 
 ## 📱 Mobile(Responsividade)
 <h1 align="center">
-    <img  src="https://github.com/GabrielBarcelos1/paper-rock-scissors/blob/main/gifmobile.gif" />
+    <img  src="" />
 </h1>
 
     
@@ -59,8 +64,8 @@ Site hospedado: https://paper-rock-scissors2.vercel.app/
 
 #### Clonando o projeto
 ```sh
-git clone https://github.com/GabrielBarcelos1/paper-rock-scissors
-cd paper-rock-scissors
+git clone https://github.com/GabrielBarcelos1/ReactLoginList
+cd ReactLoginList
 Depois disso é so mecher no projeto.
 ```
 
