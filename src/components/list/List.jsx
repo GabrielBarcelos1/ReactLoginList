@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MajorContainer,
   ContainerLeft,
@@ -21,8 +21,8 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { fakeapi } from "../../services/api";
-import { Link } from "react-router-dom";
-import { Icon, Menu, Table, Input, Dropdown } from "semantic-ui-react";
+import { Link, useHistory } from "react-router-dom";
+import { Icon, Menu, Table, Dropdown } from "semantic-ui-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiLogoutBoxLine } from "react-icons/ri";
@@ -44,6 +44,7 @@ function List() {
     { key: 3, text: "Email", value: 3 },
     { key: 4, text: "City", value: 4 },
   ];
+  const history = useHistory();
   const [arrayItens, SetarrayItens] = useState([]);
   const [startUrl, setStartUrl] = useState(0);
   const [endtUrl, setEndUrl] = useState(5);
@@ -98,7 +99,7 @@ function List() {
         setValueSort("email");
         break;
       case "City":
-        setValueSort("cidade");
+        setValueSort("endereco.cidade");
         break;
       default:
         setValueSort("");
@@ -150,16 +151,15 @@ function List() {
                       <Table.Cell>{item.cpf}</Table.Cell>
                       <Table.Cell>{item.email}</Table.Cell>
                       <Table.Cell>{item.endereco.cidade}</Table.Cell>
-                      
-                      <Table.Cell>
+
+                      <Table.Cell
+                        onClick={() => history.push(`/edit/${item.id}`)}
+                      >
                         <AiOutlineEdit size={22} color="#58AF9C" />
                       </Table.Cell>
-                      
+
                       <Table.Cell onClick={() => deleteItem(item.id)}>
-                        <AiOutlineDelete
-                          size={22}
-                          color="red"
-                        />
+                        <AiOutlineDelete size={22} color="red" />
                       </Table.Cell>
                     </Table.Row>
                   );
@@ -185,15 +185,16 @@ function List() {
                       </Menu.Item>
                     </MenuSearchContainer>
                     <MenuOptionsContainer>
-                      <Menu.Item as="a" icon onClick={() => searchItens()}>
+                      <Menu.Item>
                         <Dropdown
                           clearable
                           options={options}
                           selection
                           placeholder="Order By:"
-                          onChange={(data) =>
-                            changeOption(data.target.outerText)
-                          }
+                          onChange={(data) => {
+                            changeOption(data.target.outerText);
+                            searchItens();
+                          }}
                         />
                       </Menu.Item>
                     </MenuOptionsContainer>

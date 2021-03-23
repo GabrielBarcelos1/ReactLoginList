@@ -14,16 +14,17 @@ import {
   MinorContainerIconLogout,
   ButtonContainerMobile,
 } from "./style";
-import { Form, Input } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import InputMask from "react-input-mask";
 import { viacep, fakeapi } from "../../services/api";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps, useHistory } from "react-router-dom";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 type TParams = { id: string };
 function AddItem({ match }: RouteComponentProps<TParams>) {
+  const history = useHistory();
   const [valueName, setValueName] = useState("");
   const [valueCep, setValueCep] = useState("");
   const [valueCPF, setValueCPF] = useState("");
@@ -45,15 +46,18 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
       progress: undefined,
     });
   const notifyEdit = () =>
-    toast.success("item edited with success!", {
-      position: "bottom-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-    });
+    toast.success(
+      "item edited with success, We are redirecting you to the listing page",
+      {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      }
+    );
 
   useEffect(() => {
     async function getData() {
@@ -91,7 +95,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
       verifyCepAndCpf()
     ) {
       let cepParsed = parseValue(valueCep);
-      let teste = {
+      let userToAdd = {
         nome: valueName,
         cpf: valueCPF,
         email: valueEmail,
@@ -103,7 +107,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
           cidade: valueCity,
         },
       };
-      fakeapi.post("/clientes", teste);
+      fakeapi.post("/clientes", userToAdd);
       notify();
       setValueName("");
       setValueCep("");
@@ -122,7 +126,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
       verifyCepAndCpf()
     ) {
       let cepParsed = parseValue(valueCep);
-      let teste = {
+      let userToEdit = {
         nome: valueName,
         cpf: valueCPF,
         email: valueEmail,
@@ -134,8 +138,9 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
           cidade: valueCity,
         },
       };
-      fakeapi.put(`/clientes/${match?.params?.id}`, teste);
+      fakeapi.put(`/clientes/${match?.params?.id}`, userToEdit);
       notifyEdit();
+      setTimeout(() => history.push("/list"), 5000);
     }
   }
   function parseValue(cep: string) {

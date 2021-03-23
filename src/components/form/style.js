@@ -99,7 +99,7 @@ export const ButtonContainerMobile = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom:30px;
+  margin-bottom: 30px;
   &:hover {
     border: 1px solid #58af9c;
     color: white;
@@ -107,7 +107,7 @@ export const ButtonContainerMobile = styled.div`
     transition: 0.15s;
   }
   @media (min-width: 780px) {
-    display:none
+    display: none;
   }
 `;
 export const ButtonContainerLeft = styled.button`
@@ -130,7 +130,7 @@ export const ButtonContainerLeft = styled.button`
     transition: 0.15s;
   }
   @media (max-width: 780px) {
-    margin:10px auto;
+    margin: 10px auto;
   }
 `;
 export const ContainerIconLogout = styled.div`
@@ -144,7 +144,7 @@ export const ContainerIconLogout = styled.div`
 `;
 export const MinorContainerIconLogout = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   color: #58af9c;
   font-weight: 700;

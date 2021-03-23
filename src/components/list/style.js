@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Input,Menu } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
 
 export const MajorContainer = styled.div`
   width: 100vw;
@@ -83,7 +83,7 @@ export const ButtonContainerMobile = styled.div`
     transition: 0.15s;
   }
   @media (min-width: 916px) {
-    display:none
+    display: none;
   }
 `;
 export const MinorContainerRight = styled.div`
@@ -109,7 +109,7 @@ export const ContainerIconLogout = styled.div`
   margin: 0 auto;
   justify-content: flex-end;
   @media (max-width: 916px) {
-    justify-content: space-between
+    justify-content: space-between;
   }
 `;
 export const MinorContainerIconLogout = styled.div`
@@ -139,13 +139,13 @@ export const InputSearch = styled(Input)`
   }
 `;
 export const MenuSearchContainer = styled.div`
-    display: flex;
+  display: flex;
   @media (max-width: 451px) {
     display: none;
   }
 `;
 export const MenuOptionsContainer = styled.div`
-    display: flex;
+  display: flex;
   @media (max-width: 780px) {
     display: none;
   }

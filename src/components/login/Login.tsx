@@ -10,7 +10,7 @@ import {
   ButtonContainerRight,
   FormContainerRight,
 } from "./style";
-import { Input, Form } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 import StoreContext from "../../store/Context";
 
 function Login() {
@@ -23,10 +23,10 @@ function Login() {
   const [errorPassWord, setErrorPassWord] = useState(false);
   function SignIn() {
     const NUMBER_MAX = 4;
-    if (valuePassword.length < NUMBER_MAX ||  valueEmail.length < NUMBER_MAX) {
+    if (valuePassword.length < NUMBER_MAX || valueEmail.length < NUMBER_MAX) {
       setErrorPassWord(true);
       setErrorEmail(true);
-    }else {
+    } else {
       setErrorPassWord(false);
       setErrorEmail(false);
       setToken({ token: "1234" });
@@ -44,30 +44,32 @@ function Login() {
       <ContainerRight>
         <H1ContainerRight>Login in your account</H1ContainerRight>
         <FormContainerRight onSubmit={() => SignIn()}>
-          <Form.Field
-           data-testid="inputEmail"
-            error={errorEmail}
-            id="form-input-control-error-email"
-            control={Input}
-            label="Email"
-            placeholder="joe@schmoe.com"
-            width="sixteen"
-            value={valueEmail}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setValueEmail(e.target.value)
-            }
-            type="email"
-          />
+          <Form.Field error={errorEmail} width="sixteen">
+            <label> Email</label>
+            <input
+              type="email"
+              required
+              data-testid="inputEmail"
+              placeholder="Email"
+              value={valueEmail}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setValueEmail(e.target.value)
+              }
+            ></input>
+          </Form.Field>
           <Form.Field error={errorPassWord}>
             <label>Password</label>
             <input
+              data-testid="inputPassWord"
               placeholder="Password"
               value={valuePassword}
               type="password"
               onChange={(e) => setValuePassword(e.target.value)}
             />
           </Form.Field>
-          <Form.Field control={ButtonContainerRight} >Sign in</Form.Field>
+          <Form.Field control={ButtonContainerRight} data-testid="btnLogin">
+            Sign in
+          </Form.Field>
         </FormContainerRight>
       </ContainerRight>
     </MajorContainer>
