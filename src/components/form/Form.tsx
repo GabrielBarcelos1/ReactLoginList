@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import {
   MajorContainer,
   ContainerForm,
@@ -35,6 +35,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
   const [valueNum, setValueNum] = useState("");
   const [ErrorCep, setErroCep] = useState(false);
   const [ErrorCPF, setErrorCPF] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const notify = () =>
     toast.success("item add with success!", {
       position: "bottom-left",
@@ -81,11 +82,19 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
     if (value.endsWith("_")) {
     } else {
       let cepParsed = parseValue(value);
-      const { data } = await viacep.get(`/${cepParsed}/json/`);
+      try{
+        const { data } = await viacep.get(`/${cepParsed}/json/`);
+        setValueStreet(data.logradouro);
+        setValueCity(data.localidade);
+        setValueDistrict(data.bairro);
 
-      setValueStreet(data.logradouro);
-      setValueCity(data.localidade);
-      setValueDistrict(data.bairro);
+        data.logradouro&&inputRef.current?.focus()
+    
+    }catch(err){
+      console.error(err)
+    }
+
+      
     }
   }
   function addInfosToDb() {
@@ -278,6 +287,7 @@ function AddItem({ match }: RouteComponentProps<TParams>) {
                 <Form.Field required>
                   <label>Number</label>
                   <input
+                    ref={inputRef}
                     type="text"
                     maxLength={8}
                     data-testid="inputNumber"

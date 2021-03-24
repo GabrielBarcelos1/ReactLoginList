@@ -1,7 +1,7 @@
 {
   "clientes": [
     {
-      "nome": "gabriel vieiras",
+      "nome": "gabriel vieira",
       "cpf": "888.888.888-88",
       "email": "gabriel@gmail.com",
       "endereco": {
@@ -25,19 +25,6 @@
         "cidade": "São Paulo"
       },
       "id": 2
-    },
-    {
-      "nome": "gabriel vieiras",
-      "cpf": "888.888.888-88",
-      "email": "gabriel@gmail.com",
-      "endereco": {
-        "cep": "88054610",
-        "rua": "Rua do Lamim",
-        "numero": "8874",
-        "bairro": "Canasvieiras",
-        "cidade": "Florianópolis"
-      },
-      "id": 3
     },
     {
       "nome": "maria",
@@ -103,6 +90,19 @@
         "cidade": "Florianópolis"
       },
       "id": 8
+    },
+    {
+      "nome": "teste",
+      "cpf": "111.111.111-11",
+      "email": "teste@gmail.com",
+      "endereco": {
+        "cep": "88054611",
+        "rua": "Servidão Francisca Xavier dos Santos",
+        "numero": "7785",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 9
     }
   ]
 }
