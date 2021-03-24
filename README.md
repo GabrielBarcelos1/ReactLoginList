@@ -8,7 +8,7 @@
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/GabrielBarcelos1/ReactLoginList">
   </a>
 
-  <a href="https://github.com/GabrielBarcelos1/paper-rock-scissors/issues">
+  <a href="https://github.com/GabrielBarcelos1/ReactLoginList/issues">
     <img alt="Repository issues" src="https://img.shields.io/github/issues/GabrielBarcelos1/ReactLoginList">
   </a>
 
