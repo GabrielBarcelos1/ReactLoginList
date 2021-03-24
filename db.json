@@ -90,6 +90,19 @@
         "cidade": "Abc Paulista"
       },
       "id": 7
+    },
+    {
+      "nome": "gabriel",
+      "cpf": "111.111.111-11",
+      "email": "gabriel@gmail.com",
+      "endereco": {
+        "cep": "88054610",
+        "rua": "Rua do Lamim",
+        "numero": "2587",
+        "bairro": "Canasvieiras",
+        "cidade": "Florianópolis"
+      },
+      "id": 8
     }
   ]
 }
