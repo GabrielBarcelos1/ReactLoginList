@@ -8,10 +8,12 @@ import {
   TextContainerLeft,
   H1ContainerRight,
   ButtonContainerRight,
+  ButtonContainerLeft,
   FormContainerRight,
 } from "./style";
 import { Form } from "semantic-ui-react";
 import StoreContext from "../../store/Context";
+import {api} from '../../services/api'
 
 function Login() {
   const { setToken } = useContext(StoreContext);
@@ -21,16 +23,18 @@ function Login() {
   const [valuePassword, setValuePassword] = useState("");
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassWord, setErrorPassWord] = useState(false);
-  function SignIn() {
-    const NUMBER_MAX = 4;
-    if (valuePassword.length < NUMBER_MAX || valueEmail.length < NUMBER_MAX) {
-      setErrorPassWord(true);
-      setErrorEmail(true);
-    } else {
+  async function SignIn() {
+    try{
+      const result:any = await api.post('http://localhost:3333/sessions',{email:valueEmail, password: valuePassword})
+      console.log(`result`, result)
       setErrorPassWord(false);
       setErrorEmail(false);
       setToken({ token: "1234" });
-      history.push("/list");
+      history.push(`/list/${result.data.id}`);
+    }catch(err){
+      console.log(`err`, err)
+      setErrorPassWord(true);
+      setErrorEmail(true);
     }
   }
   return (
@@ -40,6 +44,7 @@ function Login() {
         <TextContainerLeft>
           To keep connected with us <br /> please login with your personal info
         </TextContainerLeft>
+        <ButtonContainerLeft onClick={()=> history.push('/register')}>Sign In</ButtonContainerLeft>
       </ContainerLeft>
       <ContainerRight>
         <H1ContainerRight>Login in your account</H1ContainerRight>
@@ -47,8 +52,6 @@ function Login() {
           <Form.Field error={errorEmail} width="sixteen">
             <label> Email</label>
             <input
-              type="email"
-              required
               data-testid="inputEmail"
               placeholder="Email"
               value={valueEmail}
@@ -68,7 +71,7 @@ function Login() {
             />
           </Form.Field>
           <Form.Field control={ButtonContainerRight} data-testid="btnLogin">
-            Sign in
+            Sign Up
           </Form.Field>
         </FormContainerRight>
       </ContainerRight>

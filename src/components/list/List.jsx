@@ -20,14 +20,16 @@ import {
   AiOutlineDelete,
   AiOutlineSearch,
 } from "react-icons/ai";
-import { fakeapi } from "../../services/api";
-import { Link, useHistory } from "react-router-dom";
+import { api } from "../../services/api";
+import { Link, useHistory,useParams } from "react-router-dom";
 import { Icon, Menu, Table, Dropdown } from "semantic-ui-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
+
 function List() {
+  let { id } = useParams();
   const notify = () =>
     toast.error("item deleted successfully!", {
       position: "bottom-right",
@@ -54,11 +56,15 @@ function List() {
   useEffect(() => {
     async function pickClients() {
       setRefreshSearch(false);
-      const { data } = await fakeapi.get(
-        `/clientes?${
-          valueSearch !== "" ? "q=" + valueSearch + "&_" : "_"
-        }start=${startUrl}&_end=${endtUrl}&_sort=${valueSort}`
-      );
+      // const { data } = await fakeapi.get(
+      //   `/clientes?${
+      //     valueSearch !== "" ? "q=" + valueSearch + "&_" : "_"
+      //   }start=${startUrl}&_end=${endtUrl}&_sort=${valueSort}`
+      // );
+      const { data } = await api.get(`/profile`, {
+        headers: {
+          'Authorization': id
+        }});
 
       SetarrayItens(data);
     }
@@ -85,7 +91,7 @@ function List() {
   function deleteItem(id) {
     setRefreshSearch(true);
     notify();
-    fakeapi.delete(`/clientes/${id}`);
+    // fakeapi.delete(`/clientes/${id}`);
   }
   function changeOption(value) {
     switch (value) {
@@ -108,6 +114,7 @@ function List() {
 
   return (
     <MajorContainer>
+      {console.log(`arrayItens`, arrayItens)}
       <ContainerLeft>
         <H1ContainerLeft>Help us with your data</H1ContainerLeft>
         <TextContainerLeft>
@@ -134,8 +141,8 @@ function List() {
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Cpf</Table.HeaderCell>
+                <Table.HeaderCell>Title</Table.HeaderCell>
+                <Table.HeaderCell>Description</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>City</Table.HeaderCell>
                 <Table.HeaderCell colSpan="2"></Table.HeaderCell>
@@ -147,10 +154,10 @@ function List() {
                 arrayItens.map((item) => {
                   return (
                     <Table.Row key={item.id}>
-                      <Table.Cell>{item.nome}</Table.Cell>
-                      <Table.Cell>{item.cpf}</Table.Cell>
-                      <Table.Cell>{item.email}</Table.Cell>
-                      <Table.Cell>{item.endereco.cidade}</Table.Cell>
+                      <Table.Cell>{item.title}</Table.Cell>
+                      <Table.Cell>{item.description}</Table.Cell>
+                      <Table.Cell>{item.value}</Table.Cell>
+                      <Table.Cell>{item.value}</Table.Cell>
 
                       <Table.Cell
                         onClick={() => history.push(`/edit/${item.id}`)}

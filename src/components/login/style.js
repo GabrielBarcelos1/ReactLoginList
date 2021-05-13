@@ -66,6 +66,26 @@ export const ButtonContainerRight = styled.button`
     transition: 0.15s;
   }
 `;
+export const ButtonContainerLeft = styled.button`
+  border: 0;
+  outline: 0;
+  margin: 10px auto;
+  color: white;
+  font-weight: 600;
+  background-color: #58af9c;
+  width: 250px;
+  height: 40px;
+  border-radius: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  &:hover {
+    background-color: white;
+    color:#58af9c;
+    transition: 0.15s;
+  }
+`;
 export const FormContainerRight = styled(Form)`
   width: 60%;
   @media (max-width: 600px) {
